@@ -8,20 +8,20 @@ const PORT = 8782
 
 app.get('/DeviceDescription.xml', (req, res) => {
   // TODO redirect to /rootDesc.xml
-  console.log('get /DeviceDescription.xml', req)
+  console.log('get /DeviceDescription.xml', req.originalUrl)
   res.status(500).send('get /DeviceDescription.xml')
 })
 
 app.get('*', (req, res) => {
-  console.log('get *', req)
+  console.log('get *', req.originalUrl)
   res.status(500).send('get *')
 })
 
 app.post('*', (req, res) => {
-  console.log('post *', req)
+  console.log('post *', req.originalUrl)
   res.status(500).send('post *')
 })
 
 app.listen(PORT, HOST, () => {
-  console.info(`Listening on ${HOST}:${PORT}.`)
+  console.info(`Listening on ${HOST}:${PORT}`)
 })
