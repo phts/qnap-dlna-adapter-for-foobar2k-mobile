@@ -7,5 +7,8 @@
     "dlna-adapter-for-foobar2k-mobile": "server.js"
   },
   "author": "Phil Tsarik",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
