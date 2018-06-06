@@ -1,6 +1,6 @@
 {
   "name": "qnap-dlna-adapter-for-foobar2k-mobile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An adapter for QNAP NAS DLNA service to work with foobar2000 Mobile via Internet",
   "main": "server.js",
   "bin": {
