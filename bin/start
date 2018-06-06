@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+PID_FILE=~/.dlna-adapter-for-foobar2k-mobile.pid
+
+if [ -f "$PID_FILE" ]; then
+  echo "The service has been already running."
+  echo "If you think it is not please remove file $PID_FILE and start the service again."
+  exit 1
+fi
+
+nohup dlna-adapter-for-foobar2k-mobile $@ &>/dev/null &
+PID=$!
+
+echo $PID > "$PID_FILE"

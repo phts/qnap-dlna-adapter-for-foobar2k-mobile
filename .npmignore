@@ -1,9 +1,11 @@
 node_modules/
 
+*.example
 *.log
 *.stackdump
 *.sublime-project
 *.sublime-workspace
 *.tgz
 
+.gitattributes
 deploy.sh

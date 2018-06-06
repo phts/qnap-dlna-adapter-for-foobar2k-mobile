@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+PID_FILE=~/.dlna-adapter-for-foobar2k-mobile.pid
+
+if [ ! -f "$PID_FILE" ]; then
+  echo "Cannot find file $PID_FILE. The service likely is not running."
+  exit 1
+fi
+
+PID=`cat "$PID_FILE"`
+kill $PID
+
+rm "$PID_FILE"
