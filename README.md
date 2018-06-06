@@ -6,18 +6,7 @@
 
 1) Node.js v8 (install from QNAP App Center)
 
-2) [Entware](https://github.com/Entware/Entware/wiki/Install-on-QNAP-NAS)
-
-3) `nohup`
-
-    Connect to NAS via SSH as admin and run:
-
-    ```
-    opkg update
-    opkg install coreutils-nohup
-    ```
-
-4) Export npm bin folder to `$PATH`:
+2) Export npm bin folder to `$PATH`:
 
     ```
     export PATH=/share/CACHEDEV1_DATA/.qpkg/nodejsv8/node/bin:$PATH

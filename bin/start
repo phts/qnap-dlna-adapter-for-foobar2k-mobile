@@ -8,7 +8,7 @@ if [ -f "$PID_FILE" ]; then
   exit 1
 fi
 
-nohup dlna-adapter-for-foobar2k-mobile $@ &>/dev/null &
+setsid dlna-adapter-for-foobar2k-mobile $@ &
 PID=$!
 
 echo $PID > "$PID_FILE"
