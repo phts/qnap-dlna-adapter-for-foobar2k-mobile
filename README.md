@@ -12,7 +12,6 @@
     export PATH=/share/CACHEDEV1_DATA/.qpkg/nodejsv8/node/bin:$PATH
     ```
 
-
 ## Install
 
 Connect to NAS via SSH as admin and run:
@@ -22,6 +21,8 @@ npm install -g qnap-dlna-adapter-for-foobar2k-mobile
 ```
 
 ## Usage
+
+Connect to NAS via SSH.
 
 Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobile/blob/master/dlna-adapter-config.json.example). Example:
 
@@ -41,10 +42,18 @@ Start:
 dlna-adapter-for-foobar2k-mobile-start [PATH_TO_CONFIG_FILE]
 ```
 
-If `PATH_TO_CONFIG_FILE` is not specified then `~/dlna-adapter-config.json` will be used.
+If `PATH_TO_CONFIG_FILE` is not specified then default path `~/dlna-adapter-config.json` will be used.
 
 Stop:
 
 ```
 dlna-adapter-for-foobar2k-mobile-stop
 ```
+
+## How it works
+
+foobar2000 Mobile allows to add a custom media server. However most likely foobar will not find it.
+Thats's because it tries to fetch device description on hard-coded URLs which cannot be amended in foobar application.
+
+The adapter redirects `/` and `/DeviceDescription.xml` requests to `/rootDesc.xml` which is understandable by QNAP DLNA server.
+All other requests are being redirected to QNAP DLNA server without modification.
