@@ -1,9 +1,13 @@
 #!/usr/bin/env node
 
+const argv = require('optimist')
+  .boolean('verbose')
+  .argv
+
 const fs = require('fs')
 const path = require('path')
 const untildify = require('untildify')
-const configFile = untildify(process.argv[2] || '~/dlna-adapter.config.json')
+const configFile = untildify(argv._[0] || '~/dlna-adapter.config.json')
 
 if (!fs.existsSync(configFile)) {
   console.info(`Config file ${configFile} is not found.`)
@@ -25,13 +29,15 @@ const proxy = require('express-http-proxy')
 const app = express()
 app.use(bodyParser.text({type: 'text/xml'}))
 
-app.use(function (req, res, next) {
-  console.info(req.method, req.originalUrl)
-  if (req.body && typeof req.body === 'string') {
-    console.info(req.body)
-  }
-  next()
-})
+if (argv.verbose) {
+  app.use(function (req, res, next) {
+    console.info(req.method, req.originalUrl)
+    if (req.body && typeof req.body === 'string') {
+      console.info(req.body)
+    }
+    next()
+  })
+}
 
 function userResDecorator(proxyRes, proxyResData) {
   const contentType = proxyRes.headers['content-type']
