@@ -8,3 +8,4 @@ node_modules/
 
 .gitattributes
 deploy.sh
+dlna-adapter.config.json

@@ -3,12 +3,12 @@
 const fs = require('fs')
 const path = require('path')
 const untildify = require('untildify')
-const configFile = untildify(process.argv[2] || '~/dlna-adapter-config.json')
+const configFile = untildify(process.argv[2] || '~/dlna-adapter.config.json')
 
 if (!fs.existsSync(configFile)) {
   console.info(`Config file ${configFile} is not found.`)
   console.info('Please create one like this:')
-  console.info(fs.readFileSync(path.join(__dirname, 'dlna-adapter-config.json.example')).toString())
+  console.info(fs.readFileSync(path.join(__dirname, 'dlna-adapter.config.json.example')).toString())
   process.exit(1)
 }
 

@@ -7,3 +7,4 @@ node_modules/
 *.tgz
 
 deploy.sh
+dlna-adapter.config.json

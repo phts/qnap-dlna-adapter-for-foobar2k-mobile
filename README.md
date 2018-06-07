@@ -24,7 +24,7 @@ npm install -g qnap-dlna-adapter-for-foobar2k-mobile
 
 Connect to NAS via SSH.
 
-Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobile/blob/master/dlna-adapter-config.json.example). Example:
+Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobile/blob/master/dlna-adapter.config.json.example). Example:
 
 ```
 {
@@ -43,7 +43,7 @@ Start:
 dlna-adapter-for-foobar2k-mobile-start [PATH_TO_CONFIG_FILE]
 ```
 
-If `PATH_TO_CONFIG_FILE` is not specified then default path `~/dlna-adapter-config.json` will be used.
+If `PATH_TO_CONFIG_FILE` is not specified then default path `~/dlna-adapter.config.json` will be used.
 
 Stop:
 
