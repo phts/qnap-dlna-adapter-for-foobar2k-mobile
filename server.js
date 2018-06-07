@@ -14,12 +14,12 @@ if (!fs.existsSync(configFile)) {
 
 const config = JSON.parse(fs.readFileSync(configFile))
 const express = require('express')
-const fetch = require('node-fetch')
 const bodyParser = require('body-parser')
 
 const DLNA_URL = `${config.dlnaHost}:${config.dlnaPort}`
 config.deviceDescriptionPath = config.deviceDescriptionPath || '/DeviceDescription.xml'
 
+const proxy = require('express-http-proxy')
 const app = express()
 app.use(bodyParser.text({type: 'text/xml'}))
 
@@ -29,34 +29,11 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get(['/', '/DeviceDescription.xml'], (req, res) => {
-  fetch(`${DLNA_URL}${config.deviceDescriptionPath}`)
-    .then(body => body.text())
-    .then(text => {
-      res
-        .type('xml')
-        .send(text)
-    })
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
-})
+app.use('/DeviceDescription.xml', proxy(DLNA_URL, {
+  proxyReqPathResolver: () => config.deviceDescriptionPath,
+}))
 
-app.all('*', (req, res) => {
-  const {body, method} = req
-  const headers = {
-    'Content-Type': req.get('Content-Type'),
-    Soapaction: req.get('Soapaction'),
-  }
-  fetch(`${DLNA_URL}${req.originalUrl}`, {body, headers, method})
-    .then(body => body.text())
-    .then(text => {
-      res.send(text)
-    })
-    .catch(err => {
-      res.status(500).send(err.message)
-    })
-})
+app.use('/', proxy(DLNA_URL))
 
 app.listen(config.port, config.host, () => {
   console.info(`Listening on ${config.host}:${config.port}`)
