@@ -18,6 +18,7 @@ const fetch = require('node-fetch')
 const bodyParser = require('body-parser')
 
 const DLNA_URL = `${config.dlnaHost}:${config.dlnaPort}`
+config.deviceDescriptionPath = config.deviceDescriptionPath || '/DeviceDescription.xml'
 
 const app = express()
 app.use(bodyParser.text({type: 'text/xml'}))
@@ -29,7 +30,7 @@ app.use(function (req, res, next) {
 })
 
 app.get(['/', '/DeviceDescription.xml'], (req, res) => {
-  fetch(`${DLNA_URL}/rootDesc.xml`)
+  fetch(`${DLNA_URL}${config.deviceDescriptionPath}`)
     .then(body => body.text())
     .then(text => {
       res

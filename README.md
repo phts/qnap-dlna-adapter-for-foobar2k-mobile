@@ -30,6 +30,7 @@ Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobi
 {
   "host": "0.0.0.0",
   "port": 8888,
+  "deviceDescriptionPath": "/DeviceDescription.xml",
   "dlnaHost": "http://localhost",
   "dlnaPort": 8200
 }
@@ -55,5 +56,23 @@ dlna-adapter-for-foobar2k-mobile-stop
 foobar2000 Mobile allows to add a custom media server. However most likely foobar will not find it.
 Thats's because it tries to fetch device description on hard-coded URLs which cannot be amended in foobar application.
 
-The adapter redirects `/` and `/DeviceDescription.xml` requests to `/rootDesc.xml` which is understandable by QNAP DLNA server.
+The adapter redirects `/` and `/DeviceDescription.xml` requests to `{deviceDescriptionPath}` which is understandable by QNAP DLNA server.
 All other requests are being redirected to QNAP DLNA server without modification.
+
+## Configuration
+
+For QNAP DLNA server (native):
+
+```
+"deviceDescriptionPath": "/rootDesc.xml"
+"dlnaHost": "http://192.168.0.10"
+"dlnaPort": 8200
+```
+
+For [Asset UPnP](http://www.dbpoweramp.com/asset-upnp-dlna.htm):
+
+```
+"deviceDescriptionPath": "/DeviceDescription.xml"
+"dlnaHost": "http://127.0.0.1"
+"dlnaPort": 26125
+```
