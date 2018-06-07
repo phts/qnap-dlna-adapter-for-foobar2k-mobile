@@ -16,7 +16,7 @@ const config = JSON.parse(fs.readFileSync(configFile))
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const DLNA_URL = `${config.dlnaHost}:${config.dlnaPort}`
+const DLNA_URL = `${config.dlnaHostname}:${config.dlnaPort}`
 config.deviceDescriptionPath = config.deviceDescriptionPath || '/DeviceDescription.xml'
 
 const proxy = require('express-http-proxy')
@@ -37,6 +37,6 @@ app.use('/DeviceDescription.xml', proxy(DLNA_URL, {
 
 app.use('/', proxy(DLNA_URL))
 
-app.listen(config.port, config.host, () => {
-  console.info(`Listening on ${config.host}:${config.port}`)
+app.listen(config.port, config.listenHostname, () => {
+  console.info(`Listening on ${config.listenHostname}:${config.port}`)
 })

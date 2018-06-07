@@ -28,13 +28,12 @@ Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobi
 
 ```
 {
-  "host": "0.0.0.0",
-  "port": 8888,
   "deviceDescriptionPath": "/DeviceDescription.xml",
-  "dlnaHost": "http://localhost",
-  "dlnaPort": 8200
+  "dlnaHostname": "http://localhost",
+  "dlnaPort": 8200,
+  "listenHostname": "0.0.0.0",
+  "port": 8888
 }
-
 ```
 
 Start:
@@ -65,7 +64,7 @@ For QNAP DLNA server (native):
 
 ```
 "deviceDescriptionPath": "/rootDesc.xml"
-"dlnaHost": "http://192.168.0.10"
+"dlnaHostname": "http://192.168.0.10"
 "dlnaPort": 8200
 ```
 
@@ -73,6 +72,6 @@ For [Asset UPnP](http://www.dbpoweramp.com/asset-upnp-dlna.htm):
 
 ```
 "deviceDescriptionPath": "/DeviceDescription.xml"
-"dlnaHost": "http://127.0.0.1"
+"dlnaHostname": "http://127.0.0.1"
 "dlnaPort": 26125
 ```
