@@ -53,5 +53,7 @@ app.use('/', proxy(config.dlnaHost, {
 }))
 
 app.listen(config.port, config.listenHostname, () => {
-  console.info(`Listening on ${config.listenHostname}:${config.port}`)
+  console.info(`Use config file ${configFile}.`)
+  console.info(`Listening on ${config.listenHostname}:${config.port}.`)
+  console.info(`Proxying ${config.externalHost} to ${config.dlnaHost}.`)
 })
