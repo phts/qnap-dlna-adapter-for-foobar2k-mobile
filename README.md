@@ -29,8 +29,9 @@ Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobi
 ```
 {
   "deviceDescriptionPath": "/DeviceDescription.xml",
-  "dlnaHostname": "http://localhost",
+  "dlnaHostname": "http://127.0.0.1",
   "dlnaPort": 8200,
+  "externalHostname": "http://example.com",
   "listenHostname": "0.0.0.0",
   "port": 8888
 }
@@ -57,6 +58,9 @@ Thats's because it tries to fetch device description on hard-coded URLs which ca
 
 The adapter redirects `/` and `/DeviceDescription.xml` requests to `{deviceDescriptionPath}` which is understandable by QNAP DLNA server.
 All other requests are being redirected to QNAP DLNA server without modification.
+
+Additionaly it replaces all occurrences of `{dlnaHostname}:{dlnaPort}` with `{externalHostname}:{port}` in XML output of all http requests.
+So the player will try to fetch audio file from your external URL.
 
 ## Configuration
 

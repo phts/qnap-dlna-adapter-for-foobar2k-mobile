@@ -1,7 +1,8 @@
 {
   "deviceDescriptionPath": "/DeviceDescription.xml",
-  "dlnaHostname": "http://localhost",
+  "dlnaHostname": "http://127.0.0.1",
   "dlnaPort": 8200,
+  "externalHostname": "http://example.com",
   "listenHostname": "0.0.0.0",
   "port": 8888
 }

@@ -16,8 +16,10 @@ const config = JSON.parse(fs.readFileSync(configFile))
 const express = require('express')
 const bodyParser = require('body-parser')
 
-const DLNA_URL = `${config.dlnaHostname}:${config.dlnaPort}`
 config.deviceDescriptionPath = config.deviceDescriptionPath || '/DeviceDescription.xml'
+config.dlnaHost = `${config.dlnaHostname}:${config.dlnaPort}`
+config.externalHost = `${config.externalHostname}:${config.port}`
+config.replaceRegExp = new RegExp(config.dlnaHost, 'g')
 
 const proxy = require('express-http-proxy')
 const app = express()
@@ -31,11 +33,24 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/DeviceDescription.xml', proxy(DLNA_URL, {
+function userResDecorator(proxyRes, proxyResData) {
+  const contentType = proxyRes.headers['content-type']
+  if (!contentType || !contentType.includes('text/xml')) {
+    return proxyResData
+  }
+
+  const xml = proxyResData.toString('utf8')
+  return xml.replace(config.replaceRegExp, config.externalHost)
+}
+
+app.use('/DeviceDescription.xml', proxy(config.dlnaHost, {
   proxyReqPathResolver: () => config.deviceDescriptionPath,
+  userResDecorator,
 }))
 
-app.use('/', proxy(DLNA_URL))
+app.use('/', proxy(config.dlnaHost, {
+  userResDecorator,
+}))
 
 app.listen(config.port, config.listenHostname, () => {
   console.info(`Listening on ${config.listenHostname}:${config.port}`)
