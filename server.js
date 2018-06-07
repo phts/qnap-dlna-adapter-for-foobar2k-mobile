@@ -25,7 +25,9 @@ app.use(bodyParser.text({type: 'text/xml'}))
 
 app.use(function (req, res, next) {
   console.info(req.method, req.originalUrl)
-  console.info(req.body)
+  if (req.body && typeof req.body === 'string') {
+    console.info(req.body)
+  }
   next()
 })
 
