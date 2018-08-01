@@ -7,5 +7,6 @@ node_modules/
 *.tgz
 
 .gitattributes
+.eslintrc.json
 deploy.sh
 dlna-adapter.config.json

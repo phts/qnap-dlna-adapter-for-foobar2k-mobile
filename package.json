@@ -8,6 +8,10 @@
     "dlna-adapter-for-foobar2k-mobile-start": "bin/start",
     "dlna-adapter-for-foobar2k-mobile-stop": "bin/stop"
   },
+  "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
+  },
   "author": "Phil Tsarik",
   "license": "ISC",
   "dependencies": {
@@ -16,5 +20,9 @@
     "express-http-proxy": "^1.2.0",
     "optimist": "^0.6.1",
     "untildify": "^3.0.3"
+  },
+  "devDependencies": {
+    "@phts/eslint-config": "^1.0.0",
+    "eslint": "^5.2.0"
   }
 }
