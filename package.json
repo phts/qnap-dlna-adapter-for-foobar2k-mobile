@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
-  "author": "Phil Tsarik",
+  "author": "Phil Tsaryk",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
