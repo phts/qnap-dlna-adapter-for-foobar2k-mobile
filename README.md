@@ -6,11 +6,13 @@
 
 1) Node.js v8 (install from QNAP App Center)
 
-2) Export npm bin folder to `$PATH`:
+2) Export npm bin folder to `PATH`:
 
     ```
     export PATH=/share/CACHEDEV1_DATA/.qpkg/nodejsv8/node/bin:$PATH
     ```
+
+    If you have installed [Entware](https://github.com/Entware/Entware/wiki) then it is possible to export `PATH` from `/opt/etc/profile` to make it available every time when connecting via SSH.
 
 ## Install
 
@@ -37,7 +39,7 @@ Create [config file](https://github.com/phts/qnap-dlna-adapter-for-foobar2k-mobi
 }
 ```
 
-Start:
+**Start**:
 
 ```
 dlna-adapter-for-foobar2k-mobile-start [PATH_TO_CONFIG_FILE]
@@ -45,7 +47,7 @@ dlna-adapter-for-foobar2k-mobile-start [PATH_TO_CONFIG_FILE]
 
 If `PATH_TO_CONFIG_FILE` is not specified then default path `~/dlna-adapter.config.json` will be used.
 
-Stop:
+**Stop**:
 
 ```
 dlna-adapter-for-foobar2k-mobile-stop
